@@ -1,0 +1,30 @@
+.forms {
+    width: 100%;
+
+    padding: 1% 5%;
+
+    &__main-info {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+.personal-detail {
+    width: 70%;
+}
+
+.skils {
+    width: 30%;
+}
+
+.panel-header {
+    color: black;
+    font-weight: bold;
+
+    i {
+        margin-right: 5px;
+    }
+}

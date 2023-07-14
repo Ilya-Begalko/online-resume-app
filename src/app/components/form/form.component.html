@@ -1,0 +1,88 @@
+<div class="forms">
+    <form #resumeForm="ngForm">
+        <div class="forms__main-info">
+            <p-panel class="p-panel personal-detail">
+                <ng-template pTemplate="header">
+                    <span class="panel-header">
+                        <i class="pi pi-user"></i>
+                        Personal Details
+                    </span>
+                </ng-template>
+                <div class="personal-detail__inputs">
+                    <input pInputText type="text" class="p-inputtext-lg" placeholder="Name" [(ngModel)]="resume.name"
+                        name="name" />
+                    <input pInputText type="text" class="p-inputtext-lg" placeholder="Email" />
+
+                    <textarea id="float-input" rows="5" cols="30" pInputTextarea placeholder="Address"></textarea>
+
+                    <input pInputText type="text" class="p-inputtext-lg" placeholder="Phone" />
+                </div>
+            </p-panel>
+
+            <p-panel class="p-panel skils">
+                <ng-template pTemplate="header">
+                    <span class="panel-header">
+                        <i class="pi pi-list"></i>
+                        Skills
+                    </span>
+                </ng-template>
+                <p-chips [(ngModel)]="resume.skills" [separator]="' '" name="skills"></p-chips>
+            </p-panel>
+
+            <p-panel class="p-panel employment-history">
+                <ng-template pTemplate="header">
+                    <span class="panel-header">
+                        <i class="pi pi-history"></i>
+                        Employment History
+                    </span>
+                </ng-template>
+                <div class="employment-history__inputs">
+                    <ng-container *ngFor="let work of resume.works">
+                        <input pInputText type="text" class="p-inputtext-lg" placeholder="Company Name" />
+                        <p-calendar view="year" dateFormat="yy" inputId="yearpicker" selectionMode="range"
+                            [showIcon]="true"></p-calendar>
+                    </ng-container>
+                    <p-button label="Add Employment" styleClass="p-button-outlined" (onClick)="resume.works.push({})"></p-button>
+                </div>
+            </p-panel>
+            <p-panel class="p-panel education">
+                <ng-template pTemplate="header">
+                    <span class="panel-header">
+                        <i class="pi pi-book"></i>
+                        Education
+                    </span>
+                </ng-template>
+                <div class="education__inputs">
+                    <ng-container *ngFor="let education of resume.educations">
+                        <input pInputText type="text" class="p-inputtext-lg" placeholder="Educational Institution" />
+                        <p-calendar view="year" dateFormat="yy" inputId="yearpicker" selectionMode="range"
+                            [showIcon]="true"></p-calendar>
+                    </ng-container>
+                    <p-button label="Add Institution" styleClass="p-button-outlined" (onClick)="resume.educations.push({})"></p-button>
+                </div>
+            </p-panel>
+
+            <p-panel class="p-panel languages">
+                <ng-template pTemplate="header">
+                    <span class="panel-header">
+                        <img src="assets/icons8-language-50.png" style="width: 20px; height: 20px;">
+                        Languages
+                    </span>
+                </ng-template>
+                <div class="languages__inputs">
+                    <ng-container *ngFor="let language of resume.languages">
+                        <input pInputText type="text" class="p-inputtext-lg" placeholder="Language" />
+                        <p-dropdown [options]="languageLevels" optionLabel="value"></p-dropdown>
+                    </ng-container>
+                    <p-button label="Add Institution" styleClass="p-button-outlined" (onClick)="resume.languages.push({})"></p-button>
+                </div>
+            </p-panel>
+        </div>
+        <div class="forms__btns">
+            <p-button label="Open PDF" icon="pi pi-file-pdf" styleClass="p-button-outlined" (click)="resumeForm.valid ? generatePdf('open') : ''"></p-button>
+            <p-button label="Download PDF" icon="pi pi-download" styleClass="p-button-outlined"></p-button>
+            <p-button label="Print PDF" icon="pi pi-print" styleClass="p-button-outlined"></p-button>
+            <p-button label="Reset" icon="pi pi-times" styleClass="p-button-outlined"></p-button>
+        </div>
+    </form>
+</div>
